@@ -5,7 +5,7 @@ import pygame
 sock = socket.socket()
 sock.connect(("127.0.0.1", 9876))
 data = protocol.recv(sock)
-with open("Chess_board.png", 'wb') as f:
+with open("images/Chess_board.png", 'wb') as f:
     f.write(data)
 
 LeftMouseButton = (True, False, False)

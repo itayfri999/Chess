@@ -23,8 +23,8 @@ class Bishop_W(pygame.sprite.Sprite):
         super().__init__()
         self.Color = "White"
 
-    self = pygame.image.load("white_bishop.png").convert_alpha()
+    self = pygame.image.load("images/white_bishop.png").convert_alpha()
     bishop_rect = self.get_rect()
-    self.center =
+    #self.center =
 
     pygame.rect.move(10, 5)

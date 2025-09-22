@@ -28,7 +28,7 @@ clock = pygame.time.Clock()
 
 pygame.mouse.set_cursor(pygame.cursors.diamond)
 pygame.display.set_caption("Chess")
-pygame.display.set_icon(pygame.image.load('Chess_icon.jpeg'))
+pygame.display.set_icon(pygame.image.load('images/Chess_icon.jpeg'))
 screen.fill(BLACK)
 
 running = True
@@ -44,7 +44,7 @@ running = True
 # pygame.display.update()
 
 
-class Chess_piece:
+class ChessPiece:
     def __init__(self):
         self.x = 0
         self.y = 0
@@ -72,7 +72,7 @@ class Tile:
     # def posible_moves
 
 
-dantheking = Chess_piece()
+dantheking = ChessPiece()
 print(type(dantheking))
 
 
@@ -80,7 +80,7 @@ class Bishop [Chess_piece](pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
 
-    self = pygame.image.load("white_bishop.jpeg").convert_alpha()
+    self = pygame.image.load("images/white_bishop.png").convert_alpha()
     bishop_rect = self.get_rect()
     # self.center =
 
@@ -91,10 +91,10 @@ def print_board():
         for j in range(0, 8):
             if flicker:
 
-                pygame.draw.rect(screen, BoardGREEN,
+                pygame.draw.rect(screen, BoardWHITE,
                                  (left_gap + TileSize * (j), up_gap + TileSize * (i), TileSize, TileSize))
             else:
-                pygame.draw.rect(screen, BoardWHITE,
+                pygame.draw.rect(screen, BoardGREEN,
                                  (left_gap + TileSize * (j), up_gap + TileSize * (i), TileSize, TileSize))
             flicker = not flicker
         flicker = not flicker
@@ -114,9 +114,9 @@ while running:
         mouse_position = pygame.mouse.get_pos()
 
         if pygame.mouse.get_pressed() == LeftMouseButton:
-            bishop = Chess_piece()
-            bishop.draw(screen)
             bishop.update(mouse_position)
+            bishop = ChessPiece()
+            bishop.draw(screen)
             pygame.display.flip()
 
         if event.type == pygame.QUIT:
