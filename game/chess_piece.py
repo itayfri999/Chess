@@ -1,4 +1,3 @@
-from game.move import Move
 
 class ChessPiece:
     def __init__(self,x,y,is_white):
@@ -7,6 +6,8 @@ class ChessPiece:
         self.position = (x,y)
         self.is_white:bool = is_white
 
+    def get_number(self):
+        raise NotImplementedError()
 
     def get_type(self):
         raise NotImplementedError()
@@ -24,12 +25,13 @@ class ChessPiece:
             return True
         else:
             return False
-    def default_line_move_check(self,pieces,i,j):
+    def default_line_move_check(self,pieces,i,j,state):
+        from game.move import Move
         moves_part : list[Move] = []
         while True:
             if self.check_range_legal(self.x + i,self.y + j):
                 if pieces[self.x + i][self.y + j] is None:
-                    moves_part.append(Move(self, (self.x + i, self.y + j)))
+                    moves_part.append(Move(self, (self.x + i, self.y + j),state))
                     if i > 0:
                         i += 1
                     elif i < 0:
@@ -39,7 +41,8 @@ class ChessPiece:
                     elif j < 0:
                         j -= 1
                 elif self.check_different_color(self,pieces[self.x + i][self.y + j]):
-                    moves_part.append(Move(self, (self.x + i, self.y + j)))
+                    moves_part.append(Move(self, (self.x + i, self.y + j),state))
+                    moves_part[len(moves_part)-1].is_eating_piece = True
                     return moves_part
                 else:
                     return moves_part
